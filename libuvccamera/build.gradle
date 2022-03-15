@@ -1,4 +1,22 @@
-apply plugin: 'com.android.library'
+//apply plugin: 'com.android.library'
+plugins {
+	id 'com.android.library'
+	id 'maven-publish'
+}
+
+repositories {
+	mavenLocal()
+}
+
+afterEvaluate {
+	publishing {
+		publications {
+			mavenRelease(MavenPublication) {
+				from components.release
+			}
+		}
+	}
+}
 /*
  *  UVCCamera
  *  library and sample to access to UVC web camera on non-rooted Android device
@@ -34,7 +52,7 @@ android {
 	}
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 21
 		targetSdkVersion versionTarget
     }
 
